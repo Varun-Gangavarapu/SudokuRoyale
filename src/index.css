@@ -1,0 +1,736 @@
+body {
+  /* GeneralFont */
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+* {
+  /* dude the default for this is content-box but border-box is superior */
+  /* https://stackoverflow.com/questions/19940459/box-sizing-border-box */
+  /* def read abt it if ur interested it's such a time saver */
+  box-sizing: border-box;
+}
+
+hr {
+  /* Line Width */
+  width: 50vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  column-gap: 2rem;
+}
+
+/* I recommend looking into SASS because it supports nested classes */
+/* nested classes make it a lot easier to understand the structure and interactions of diff classes */
+/* bc here the column is only used as a child of the container */
+/* also sass is compiled to css which is why webpack is so good! you don't have to manually compile everything, webpack does it for you */
+/* while i'm on this tangent u can use babel and stuff to polyfill new JS for older browsers */
+.col {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.candidates {
+  /* background-color: green; */
+  width: 3vh;
+  height: 3vh;
+  min-width: 0.83rem;
+  min-height: 0.83rem;
+  text-align: center;
+  /* display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr; */
+}
+/* personal preference, but I prefer to always use classes */
+/* then again, it's probably because React forces me to lol */
+#board {
+  /* Dimensions */
+  min-width: 22.5rem;
+  min-height: 22.5rem;
+  height: 81vh;
+  width: 81vh;
+  margin-top: 1rem;
+  /* 9x9 Board */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.tile {
+  /* Dimensions */
+  /* TODO: u can change this yourself vw and vh should all be replaced with rem*/
+  /* https://www.freecodecamp.org/news/what-is-rem-in-css/ */
+
+  border: 0.1rem solid lightgray;
+  width: 9vh;
+  height: 9vh;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  /* Cursor */
+  cursor: pointer;
+
+  /* Text */
+
+  font-size: calc(15px + 2vh);
+  font-weight: bold;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.threeXthree {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.choice {
+  background-color: lightgray;
+}
+
+#choice-bar {
+  cursor: pointer;
+  width: 13.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+}
+
+#numeros {
+  border: 1px solid darkslategray;
+  height: 2.25rem;
+  width: 6.75rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+#possibilites {
+  border: 1px solid darkslategray;
+  height: 2.25rem;
+  width: 6.75rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+#digits {
+  /* 3x3 */
+  height: calc(4.75rem * 3);
+  width: calc(4.75rem * 3);
+  display: grid;
+  margin-top: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.number {
+  position: relative;
+  /* Dimensions */
+  width: 4rem;
+  height: 4rem;
+  /* for stuff like borders I like to keep it at px because it doesn't really change that much across screen sizes */
+  border: 1px solid darkslategrey;
+
+  cursor: pointer;
+
+  /* Color */
+  background-color: #efefef;
+
+  /* Text */
+  /* don't use vw or vh for font size. use rem because it is proportional to user font size choice */
+  /* also ur original properties get really small on mobile lol */
+  font-size: 2rem;
+  font-weight: bold;
+  /* separated this because it's not really related to text but rather how children are laid out  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Click Effect */
+  overflow: hidden;
+  transition: 0.3s; /* for performance reasons it's a good idea to also specify what properties are going to be transitioned  */
+}
+
+#wins {
+  position: relative;
+  margin: auto;
+  left: 30vw;
+}
+
+#timer {
+  /* override default styling */
+  margin-top: 1rem;
+}
+
+/* Click Effect
+.ripple {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+
+  border-radius: 50%;
+  background-color: white;
+
+  pointer-events: none;
+  opacity: 0.5;
+  animation: ripple 0.5s linear;
+  overflow: hidden;
+}
+
+/* Click Effect timeframe */
+/* @keyframes ripple {
+  to {
+    width: 15rem;
+    height: 15rem;
+    opacity: 0;
+    background-color: green;
+
+  }
+}  */
+
+#remover {
+  border: 1px solid darkslategrey;
+  height: 4rem;
+  width: 13.5rem;
+
+  margin-top: 0.35rem;
+  /* Color */
+  background-color: #efefef;
+
+  /* Cursor */
+  cursor: pointer;
+
+  /* Text */
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Click Effect */
+  overflow: hidden;
+}
+
+/* Delete Hover Effect */
+#remover:hover {
+  background-color: lightgray;
+}
+
+/* Number Hover Effect */
+.number:hover {
+  background-color: lightgray;
+}
+
+/* Tile Click Effect */
+.tile-selected {
+  background-color: #ffd636;
+  width: 9vh;
+  height: 9vh;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.candidate {
+  cursor: pointer;
+  /* Text */
+
+  font-size: calc(1px + 1.5vh);
+  font-weight: 500;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+}
+
+.non-transparent {
+  opacity: 1;
+}
+
+.transparent {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.transparent:hover {
+  opacity: 1;
+}
+
+.selected-candidate {
+  cursor: crosshair;
+  background-color: green;
+  /* Text */
+
+  font-size: calc(1px + 15vh);
+  font-weight: bold;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+/* Preexisting Tiles */
+.tile-start {
+  background-color: #efefef;
+  cursor: default;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  /*
+    background-color: whitesmoke;
+    */
+}
+
+.tile-start-and-selected {
+  background-color: #ebd270;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Box Seperators */
+.horizontal-line {
+  border-bottom: 0.15rem solid black;
+}
+
+/* Box Seperators */
+.vertical-line {
+  border-right: 0.15rem solid black;
+}
+
+@media (max-width: 975px) {
+  #board {
+    /* Dimensions */
+    min-width: 22.5rem;
+    min-height: 22.5rem;
+    height: 72vw;
+    width: 72vw;
+    margin-top: 1rem;
+    /* 9x9 Board */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .tile {
+    /* Dimensions */
+    /* TODO: u can change this yourself vw and vh should all be replaced with rem*/
+    /* https://www.freecodecamp.org/news/what-is-rem-in-css/ */
+
+    border: 0.1rem solid lightgray;
+    width: 8vw;
+    height: 8vw;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    /* Cursor */
+    cursor: pointer;
+
+    /* Text */
+
+    font-size: calc(15px + 2vh);
+    font-weight: bold;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tile-selected {
+    background-color: #ffd636;
+    width: 8vw;
+    height: 8vw;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  .horizontal-line {
+    border-bottom: 0.15rem solid black;
+  }
+
+  /* Box Seperators */
+  .vertical-line {
+    border-right: 0.15rem solid black;
+  }
+}
+
+@media (max-width: 850px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    column-gap: 2rem;
+  }
+  .col {
+    display: flex;
+    flex-direction: row;
+    row-gap: 2rem;
+  }
+
+  #board {
+    /* Dimensions */
+    height: 31.5rem;
+    width: 31.5rem;
+    /* 9x9 Board */
+    margin: auto;
+    margin-top: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .tile {
+    /* Dimensions */
+    /* TODO: u can change this yourself vw and vh should all be replaced with rem*/
+    /* https://www.freecodecamp.org/news/what-is-rem-in-css/ */
+
+    border: 0.1rem solid lightgray;
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    /* Cursor */
+    cursor: pointer;
+
+    /* Text */
+
+    font-size: calc(15px + 2vh);
+    font-weight: bold;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tile-selected {
+    background-color: #ffd636;
+    width: 3.5rem;
+    height: 3.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  .horizontal-line {
+    border-bottom: 0.15rem solid black;
+  }
+
+  /* Box Seperators */
+  .vertical-line {
+    border-right: 0.15rem solid black;
+  }
+
+  .row2 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    margin: auto;
+  }
+
+  #choice-bar {
+    cursor: pointer;
+    height: 2.25rem;
+    width: 22rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    margin-top: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #efefef;
+  }
+
+  #numeros {
+    border: 1px solid darkslategray;
+    height: 2.25rem;
+    width: 11rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #possibilites {
+    border: 1px solid darkslategray;
+    height: 2.25rem;
+    width: 11rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #digits {
+    /* 2x5 */
+    width: 30rem;
+    height: 6rem;
+    display: grid;
+    margin-top: -0.75rem;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .number {
+    /* Dimensions */
+    width: 5.25rem;
+    height: 2.5rem;
+    /* for stuff like borders I like to keep it at px because it doesn't really change that much across screen sizes */
+    border: 1px solid darkslategrey;
+
+    cursor: pointer;
+
+    /* Color */
+    background-color: #efefef;
+
+    /* Text */
+    /* don't use vw or vh for font size. use rem because it is proportional to user font size choice */
+    /* also ur original properties get really small on mobile lol */
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* separated this because it's not really related to text but rather how children are laid out  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Click Effect */
+    overflow: hidden;
+    transition: 0.3s; /* for performance reasons it's a good idea to also specify what properties are going to be transitioned  */
+  }
+
+  #remover {
+    border: 1px solid darkslategrey;
+    height: 2.5rem;
+    width: 5.25rem;
+
+    margin-left: 24rem;
+    margin-top: -5rem;
+    /* Color */
+    background-color: #efefef;
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Text */
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Click Effect */
+    overflow: hidden;
+
+  }
+
+  #timer {
+    /* override default styling */
+    margin-top: -1.25rem;
+  }
+
+  /* Delete Hover Effect */
+  #remover:hover {
+    background-color: lightgray;
+  }
+
+  /* Number Hover Effect */
+  .number:hover {
+    background-color: lightgray;
+  }
+}
+
+@media (max-width: 500px) {
+
+  #board {
+    /* Dimensions */
+
+    height: 49vw;
+    width: 49vw;
+
+    margin-top: 1rem;
+    /* 9x9 Board */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .tile {
+    /* Dimensions */
+    /* TODO: u can change this yourself vw and vh should all be replaced with rem*/
+    /* https://www.freecodecamp.org/news/what-is-rem-in-css/ */
+
+    border: 0.1rem solid lightgray;
+    width: 7vw;
+    height: 7vw;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    /* Cursor */
+    cursor: pointer;
+
+    /* Text */
+
+    font-size: calc(10px + 1rem);
+    font-weight: bold;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tile-selected {
+    background-color: #ffd636;
+    width: 7vw;
+    height: 7vw;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+
+  .horizontal-line {
+    border-bottom: 0.15rem solid black;
+  }
+
+  /* Box Seperators */
+  .vertical-line {
+    border-right: 0.15rem solid black;
+  }
+
+  .candidate {
+    cursor: pointer;
+    /* Text */
+  
+    font-size: calc(1px + .5rem);
+    font-weight: 500;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+  }
+
+
+  .row2 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    margin: auto;
+  }
+
+  #choice-bar {
+    cursor: pointer;
+    height: 2.25rem;
+    width: 14rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    margin-top: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #efefef;
+  }
+
+  #numeros {
+    border: 1px solid darkslategray;
+    height: 2.25rem;
+    width: 7rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #possibilites {
+    border: 1px solid darkslategray;
+    height: 2.25rem;
+    width: 7rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #digits {
+    /* 2x5 */
+    /* background-color: green; */
+    margin: auto;
+    width: 21rem;
+    height: 6rem;
+    display: grid;
+    margin-top: -1rem;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .number {
+    /* Dimensions */
+    width: 3.55rem;
+    height: 2.5rem;
+    /* for stuff like borders I like to keep it at px because it doesn't really change that much across screen sizes */
+    border: 1px solid darkslategrey;
+
+    cursor: pointer;
+
+    /* Color */
+    background-color: #efefef;
+
+    /* Text */
+    /* don't use vw or vh for font size. use rem because it is proportional to user font size choice */
+    /* also ur original properties get really small on mobile lol */
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* separated this because it's not really related to text but rather how children are laid out  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Click Effect */
+    overflow: hidden;
+    transition: 0.3s; /* for performance reasons it's a good idea to also specify what properties are going to be transitioned  */
+  }
+
+  #remover {
+    border: 1px solid darkslategrey;
+    width: 3.55rem;
+    height: 2.5rem;
+
+    margin-left: 16.75rem;
+    margin-top: -5rem;
+    /* Color */
+    background-color: #efefef;
+
+    /* Cursor */
+    cursor: pointer;
+
+    /* Text */
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Click Effect */
+    overflow: hidden;
+
+  }
+
+  #timer {
+    /* override default styling */
+    margin-top: -1.25rem;
+  }
+
+  /* Delete Hover Effect */
+  #remover:hover {
+    background-color: lightgray;
+  }
+
+  /* Number Hover Effect */
+  .number:hover {
+    background-color: lightgray;
+  }
+}
