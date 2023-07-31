@@ -21,10 +21,7 @@ export function handleKeyDown(e, tileSelected, puzzle) {
           tileSelected.id.split("-")[2] - 1
         ] = "" + e.key; // Update the puzzle array to reflect this change
         //check if the change resulted in a win
-        if (checkWin(puzzle)) {
-          removeAllEventListeners();
-          console.log('You Win')
-        }
+        checkWin(puzzle);
       }
     } else if (
       (e.key == "Backspace" || e.key == "Delete") &&

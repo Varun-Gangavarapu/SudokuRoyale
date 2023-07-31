@@ -219,6 +219,6 @@ export const solved = generateSolved();
 let temp = solved.map(function(arr) {
     return arr.slice();
 });
-let pairsRemoved = 40;
+let pairsRemoved = 20;
 export const puzz = createPuzzle(temp, pairsRemoved);
 

@@ -2,10 +2,12 @@ import { puzz, solved } from "./generateGrid.js";
 import { handleTileClick } from "./eventListeners/handleTileClick.js";
 import { handleKeyDown } from "./eventListeners/handleKeyDown.js";
 import { handleNumPadClick } from "./eventListeners/handleNumPadClick.js";
+import { startTimer } from "./timer.js";
 
 export let puzzle = puzz;
 let tileSelected;
 export function fillGrid() {
+  startTimer();
   // Iterating the tile grid
   document.addEventListener("keydown", keyDownFunction);
   for (let i = 0; i < 9; i++) {
