@@ -7,10 +7,9 @@ export function handleKeyDown(e, tileSelected, puzzle) {
     var coords = tileSelected.id.split("-");
     if (
       !isNaN(Number(e.key)) &&
-      !(
-        tileSelected.classList.contains("tile-start") ||
+      !
         tileSelected.classList.contains("tile-start-and-selected")
-      )
+      
     ) {
       // If the entered key is a number
       //if the tile is given, you cannot modify the number inside
@@ -29,10 +28,9 @@ export function handleKeyDown(e, tileSelected, puzzle) {
       }
     } else if (
       (e.key == "Backspace" || e.key == "Delete") &&
-      !(
-        tileSelected.classList.contains("tile-start") ||
+      !
         tileSelected.classList.contains("tile-start-and-selected")
-      )
+      
     ) {
       //if the tile is selected, you cannot delete the text inside
 
