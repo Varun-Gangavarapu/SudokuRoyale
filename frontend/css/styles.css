@@ -46,6 +46,37 @@ body {
   align-items: center;
 }
 
+.tile:focus {
+  outline: none;
+}
+
+.candidates {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 9vh;
+  height: 9vh;
+  font-size: calc(1px + 1vh);
+  font-weight: 500;
+  margin-top: 1vh;
+}
+
+.candidate {
+  justify-self: center;
+  align-self: center;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.hidden:hover {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+
+
 .tile-start {
   background-color: #efefef;
 }
@@ -143,3 +174,4 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+

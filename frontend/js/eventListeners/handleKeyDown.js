@@ -1,3 +1,4 @@
+import { addCandidates } from "../addCandidates.js";
 import { checkWin } from "./checkWin.js";
 import { removeAllEventListeners } from "./removeAllEventListeners.js";
 
@@ -35,6 +36,7 @@ export function handleKeyDown(e, tileSelected, puzzle) {
       puzzle[tileSelected.id.split("-")[1] - 1][
         tileSelected.id.split("-")[2] - 1
       ] = "."; // Update the puzzle
+      addCandidates(tileSelected)
     } else if (
       e.key == "ArrowLeft" ||
       e.key == "ArrowRight" ||

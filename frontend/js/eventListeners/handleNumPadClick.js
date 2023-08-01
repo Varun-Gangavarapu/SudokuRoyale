@@ -1,3 +1,5 @@
+import { addCandidates } from "../addCandidates.js";
+
 export function handleNumPadClick(e, tileSelected, puzzle) {
   // Ripple effect
   let temp = e.currentTarget;
@@ -12,6 +14,8 @@ export function handleNumPadClick(e, tileSelected, puzzle) {
       puzzle[tileSelected.id.split("-")[1] - 1][
         tileSelected.id.split("-")[2] - 1
       ] = ".";
+      addCandidates(tileSelected);
+
     } else {
       let selectedNumber = temp.id.split("-")[1];
       tileSelected.innerText = selectedNumber;

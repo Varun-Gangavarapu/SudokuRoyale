@@ -3,6 +3,7 @@ import { handleTileClick } from "./eventListeners/handleTileClick.js";
 import { handleKeyDown } from "./eventListeners/handleKeyDown.js";
 import { handleNumPadClick } from "./eventListeners/handleNumPadClick.js";
 import { startTimer } from "./timer.js";
+import { addCandidates } from "./addCandidates.js";
 
 export let puzzle = puzz;
 let tileSelected;
@@ -14,22 +15,26 @@ export function fillGrid() {
     for (let j = 0; j < 9; j++) {
       let tile = document.getElementById(`tile-${i + 1}-${j + 1}`);
       tile.setAttribute("tabindex", "0"); // Idk what this is or why it is needed but keydown doesnt work without it and GPT told me this would fix
-      
+
       // Assigning tiles
       if (puzzle[i][j] != ".") {
         tile.innerText = puzzle[i][j];
         tile.classList.add("tile-start");
       } else {
-        tile.addEventListener("click", tileClickFunction)
-      }
+        tile.addEventListener("click", tileClickFunction);
+        addCandidates(tile)
+      }      
     }
   }
 
+
   for (let i = 1; i < 10; i++) {
     let number = document.getElementById(`num-${i}`);
-    number.addEventListener('click', numPadClickFunction)
+    number.addEventListener("click", numPadClickFunction);
   }
-  document.getElementById('remover').addEventListener('click', numPadClickFunction);
+  document
+    .getElementById("remover")
+    .addEventListener("click", numPadClickFunction);
 }
 
 export function keyDownFunction(e) {
@@ -52,5 +57,5 @@ export function tileClickFunction(e) {
 }
 
 export function numPadClickFunction(e) {
-  puzzle = handleNumPadClick(e, tileSelected, puzzle)
+  puzzle = handleNumPadClick(e, tileSelected, puzzle);
 }
