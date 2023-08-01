@@ -9,6 +9,7 @@ export function removeAllEventListeners() {
       let tile = document.getElementById(`tile-${i + 1}-${j + 1}`);
       
       tile.removeEventListener("click", tileClickFunction);
+      
     }
   }
 }

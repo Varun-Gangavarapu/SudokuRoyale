@@ -4,6 +4,8 @@ import { handleKeyDown } from "./eventListeners/handleKeyDown.js";
 import { handleNumPadClick } from "./eventListeners/handleNumPadClick.js";
 import { startTimer } from "./timer.js";
 import { addCandidates } from "./addCandidates.js";
+import { handleControlClick } from "./eventListeners/controls.js";
+
 
 export let puzzle = puzz;
 let tileSelected;
@@ -11,6 +13,9 @@ export function fillGrid() {
   startTimer();
   // Iterating the tile grid
   document.addEventListener("keydown", keyDownFunction);
+  document.getElementById('numbers-mode').addEventListener('click', handleControlClick)
+  document.getElementById('candidates-mode').addEventListener('click', handleControlClick)
+
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       let tile = document.getElementById(`tile-${i + 1}-${j + 1}`);

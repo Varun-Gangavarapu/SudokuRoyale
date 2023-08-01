@@ -71,7 +71,7 @@ body {
   opacity: 0;
 }
 
-.hidden:hover {
+.tile-selected .hidden:hover {
   transition: opacity 0.25s;
   opacity: 1;
 }
@@ -95,7 +95,7 @@ body {
   height: calc(5rem * 4);
   width: calc(5rem * 3);
   grid-gap: 1rem;
-  margin-top: 5rem;
+  margin-top: 1rem;
 }
 
 .number, .remover {
@@ -175,3 +175,38 @@ body {
   cursor: pointer;
 }
 
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  font-weight: bold;
+}
+
+.mode-switcher {
+  display: flex;
+  justify-content: space-between;
+  height: 2.5rem; /* Adjust as necessary, based on the height of your remover */
+  width: calc(5rem * 3); /* Make it the same width as your numpad */
+  border: 1px solid grey;
+}
+
+.mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  background-color: #efefef;
+
+}
+
+.mode:not(:last-child) {
+  border-right: 1px solid grey;
+}
+
+.active-mode {
+  background-color: lightgrey
+
+}
