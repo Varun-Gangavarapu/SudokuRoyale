@@ -1,0 +1,48 @@
+@import url(./controls.css);
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: calc(5rem * 4);
+    width: calc(5rem * 3);
+    grid-gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  
+  .number, .remover {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem; /* adjust as necessary */
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #efefef;
+    border: 1px solid darkslategrey;
+  }
+  
+  .remover {
+    grid-column: span 3; /* Makes the remover span all 3 columns */
+  }
+  
+  .ripple {
+    position: absolute;
+    width: 200%; /* Adjust as necessary */
+    height: 200%; /* Adjust as necessary */
+    top: -50%;
+    left: -50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 100%; /* This gives the ripple a circle shape */
+    transform: scale(0);
+    animation: ripple 0.5s ease-out;
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }

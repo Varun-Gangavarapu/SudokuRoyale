@@ -1,0 +1,23 @@
+@import url(./tiles.css);
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 3px solid black; /* Bolded black border */
+  min-width: 22.5rem;
+  min-height: 22.5rem;
+  margin-top: 1rem;
+  margin-right: 10rem;
+}
+
+.ninedrant {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 0.1rem solid grey; /* Bolded light grey border */
+}

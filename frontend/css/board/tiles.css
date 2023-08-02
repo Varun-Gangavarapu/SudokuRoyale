@@ -1,0 +1,39 @@
+@import url(./candidate.css);
+
+.tile {
+    border: 0.1rem solid lightgray;
+    width: 9vh;
+    height: 9vh;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    background-color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: calc(15px + 2vh);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  .tile:focus {
+    outline: none;
+  }
+
+  .tile-selected .hidden:hover {
+    transition: opacity 0.25s;
+    opacity: 1;
+  }
+  
+  
+  .tile-start {
+    background-color: #efefef;
+  }
+  
+  .tile-selected {
+    background-color: #ffd636;
+  }
+  
+  .tile-start-and-selected {
+    background-color: #ebd270;
+  }

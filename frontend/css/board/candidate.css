@@ -1,0 +1,21 @@
+.candidates {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 9vh;
+    height: 9vh;
+    font-size: calc(1px + 1vh);
+    font-weight: 500;
+    margin-top: 1vh;
+  }
+
+  
+  .candidate {
+    justify-self: center;
+    align-self: center;
+  }
+  
+  .hidden {
+    opacity: 0;
+  }

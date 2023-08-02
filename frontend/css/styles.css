@@ -1,3 +1,6 @@
+@import url(./board/board.css);
+@import url(./numpad/numpad.css);
+
 body {
   display: flex;
   flex-direction: row;
@@ -10,132 +13,6 @@ body {
   font-family: monospace;
 }
 
-.main-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 3px solid black; /* Bolded black border */
-  min-width: 22.5rem;
-  min-height: 22.5rem;
-  margin-top: 1rem;
-  margin-right: 10rem;
-}
-
-.ninedrant {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: .1rem solid grey; /* Bolded light grey border */
-}
-
-.tile {
-  border: 0.1rem solid lightgray;
-  width: 9vh;
-  height: 9vh;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  background-color: white;
-  text-align: center;
-  font-weight: bold;
-  font-size: calc(15px + 2vh);
-  display: grid;
-  justify-content: center;
-  align-items: center;
-}
-
-.tile:focus {
-  outline: none;
-}
-
-.candidates {
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  width: 9vh;
-  height: 9vh;
-  font-size: calc(1px + 1vh);
-  font-weight: 500;
-  margin-top: 1vh;
-}
-
-.candidate {
-  justify-self: center;
-  align-self: center;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-.tile-selected .hidden:hover {
-  transition: opacity 0.25s;
-  opacity: 1;
-}
-
-
-.tile-start {
-  background-color: #efefef;
-}
-
-.tile-selected {
-  background-color: #ffd636;
-}
-
-.tile-start-and-selected {
-  background-color: #ebd270;
-}
-
-.numpad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  height: calc(5rem * 4);
-  width: calc(5rem * 3);
-  grid-gap: 1rem;
-  margin-top: 1rem;
-}
-
-.number, .remover {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4rem; /* adjust as necessary */
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  background-color: #efefef;
-  border: 1px solid darkslategrey;
-}
-
-.remover {
-  grid-column: span 3; /* Makes the remover span all 3 columns */
-}
-
-.ripple {
-  position: absolute;
-  width: 200%; /* Adjust as necessary */
-  height: 200%; /* Adjust as necessary */
-  top: -50%;
-  left: -50%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 100%; /* This gives the ripple a circle shape */
-  transform: scale(0);
-  animation: ripple 0.5s ease-out;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-
 /* The popup container */
 .win-popup {
   position: fixed; /* Stay in place */
@@ -145,7 +22,7 @@ body {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   display: none; /* Hidden by default */
 }
 
@@ -175,38 +52,153 @@ body {
   cursor: pointer;
 }
 
-.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 3rem;
-  font-weight: bold;
-}
 
-.mode-switcher {
-  display: flex;
-  justify-content: space-between;
-  height: 2.5rem; /* Adjust as necessary, based on the height of your remover */
-  width: calc(5rem * 3); /* Make it the same width as your numpad */
-  border: 1px solid grey;
-}
 
-.mode {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  cursor: pointer;
-  background-color: #efefef;
+@media only screen and (max-width: 1275px) {
+  .grid-container {
+    margin-right: 4rem;
+  }
 
-}
+  .tile {
+    width: 8vh; /* Adjust as necessary */
+    height: 8vh; /* Adjust as necessary */
+    min-width: 2.75rem; /* Adjust as necessary */
+    min-height: 2.75rem; /* Adjust as necessary */
+    font-size: 25px; /* Adjust as necessary */
+  }
 
-.mode:not(:last-child) {
-  border-right: 1px solid grey;
-}
+  .candidates {
+    width: 8vh; /* Adjust as necessary */
+    height: 8vh; /* Adjust as necessary */
+    min-width: 2.75rem; /* Adjust as necessary */
+    min-height: 2.75rem; /* Adjust as necessary */
+    margin-top: .75vh;
 
-.active-mode {
-  background-color: lightgrey
+  }
 
 }
+
+@media only screen and (max-width: 1125px) {
+
+  .tile {
+    width: 7vh; /* Adjust as necessary */
+    height: 7vh; /* Adjust as necessary */
+    min-width: 2.75rem; /* Adjust as necessary */
+    min-height: 2.75rem; /* Adjust as necessary */
+    font-size: 25px; /* Adjust as necessary */
+  }
+
+  .candidates {
+    width: 7vh; /* Adjust as necessary */
+    height: 7vh; /* Adjust as necessary */
+    min-width: 2.75rem; /* Adjust as necessary */
+    min-height: 2.75rem; /* Adjust as necessary */
+    margin-top: .5vh;
+
+  }
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .tile {
+    width: 6vh; /* Adjust as necessary */
+    height: 6vh; /* Adjust as necessary */
+    min-width: 2.75rem; /* Adjust as necessary */
+    min-height: 2.75rem; /* Adjust as necessary */
+    font-size: 25px; /* Adjust as necessary */
+    
+  }
+
+  .candidates {
+    width: 6vh; /* Adjust as necessary */
+    height: 6vh; /* Adjust as necessary */
+    min-width: 2.75rem; /* Adjust as necessary */
+    min-height: 2.75rem; /* Adjust as necessary */
+    margin-top: .25vh;
+
+  }
+
+}
+
+@media only screen and (max-width: 850px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-container {
+    margin-right: 0;
+  }
+
+  .tile {
+    width: 4rem; /* Adjust as necessary */
+    height: 4rem; /* Adjust as necessary */
+
+    font-size: 25px; /* Adjust as necessary */
+  }
+
+  .candidates {
+    width: 4rem; /* Adjust as necessary */
+    height: 4rem; /* Adjust as necessary */
+    margin-top: .2vh;
+
+
+  }
+
+  .numpad {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    width: calc(5rem * 5);
+    height: calc(5rem * 2);
+    margin-top: 2rem; /* Adjust as necessary */
+  }
+
+  .number,
+  .remover {
+    height: 3rem; /* Adjust as necessary */
+    width: 4rem;
+    font-size: 1.5rem; /* Adjust as necessary */
+  }
+
+  .remover {
+    grid-column: span 1; /* Makes the remover span all 3 columns */
+  }
+}
+
+@media only screen and (max-width: 750px) {
+
+  .tile {
+    width: 3.5rem; /* Adjust as necessary */
+    height: 3.5rem; /* Adjust as necessary */
+  }
+
+  .candidates {
+    width: 3.5rem; /* Adjust as necessary */
+    height: 3.5rem; /* Adjust as necessary */
+    margin-top: .1vh;
+
+  }
+
+}
+
+
+@media only screen and (max-width: 625px) {
+
+
+  .tile {
+    width: 2.75rem; /* Adjust as necessary */
+    height: 2.75rem; /* Adjust as necessary */
+  }
+
+  .candidates {
+    width: 2.75vh; /* Adjust as necessary */
+    height: 2.75vh; /* Adjust as necessary */
+    margin-top: 0vh;
+
+  }
+
+}
+
+
+
